@@ -23,7 +23,7 @@ public class Mentoria extends Conteudo {
     }
     @Override
     public String toString() {
-        return "Mentoria [titulo=" + getTitulo() + ", descricao=" + getDestricao() + ", data=" + data + "]";
+        return "Mentoria Titulo = '" + getTitulo() + "', Descricao = '" + getDestricao() + "', Data = '" + data + "'}";
     }
     public void setData(LocalDate data) {
         this.data = data;
