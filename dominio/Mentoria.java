@@ -12,6 +12,9 @@ public class Mentoria extends Conteudo {
         return XP_PADRAO + 20d;
         
     }
+
+    
+
    
     public Mentoria(){
 
@@ -29,6 +32,10 @@ public class Mentoria extends Conteudo {
         this.data = data;
     }
 
+    
+        
+    }
+
 
     
-}
+

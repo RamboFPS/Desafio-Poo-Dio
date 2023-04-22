@@ -9,10 +9,32 @@ public class Bootcamp {
 
     private String nome;
     private String descricao;
+    private boolean conclusao;
     private final LocalDate dataInicial = LocalDate.now();
     private final LocalDate dataFinal = dataInicial.plusDays(45);
     private Set<Dev> devsInscritos = new  HashSet<>();
+    private int porcentagemConcluida = 0;
+    
+    
+    
+    public void atualizarPorcentagemConcluida() {
+        int totalConteudos = conteudos.size();
+        int totalConteudosConcluidos = 0;
+
+        for (Conteudo conteudo : conteudos) {
+            for (Dev dev : devsInscritos) {
+                if (dev.getConteudosConcluidos().contains(conteudo)) {
+                    totalConteudosConcluidos++;
+                    break;
+                }
+            }
+        }
+
+        porcentagemConcluida = (int) ((double) totalConteudosConcluidos / totalConteudos * 100);
+    }
+    
     private Set<Conteudo> conteudos = new LinkedHashSet<>();
+    
     public String getNome() {
         return nome;
     }
@@ -31,6 +53,16 @@ public class Bootcamp {
     public LocalDate getDataFinal() {
         return dataFinal;
     }
+    public boolean isConclusao() {
+        return conclusao;
+    }
+
+    public double getPorcentagemConcluida() {
+        return porcentagemConcluida;
+    }
+
+    
+
     public Set<Dev> getDevsInscritos() {
         return devsInscritos;
     }
@@ -47,12 +79,7 @@ public class Bootcamp {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-        result = prime * result + ((descricao == null) ? 0 : descricao.hashCode());
-        result = prime * result + ((dataInicial == null) ? 0 : dataInicial.hashCode());
-        result = prime * result + ((dataFinal == null) ? 0 : dataFinal.hashCode());
-        result = prime * result + ((devsInscritos == null) ? 0 : devsInscritos.hashCode());
-        result = prime * result + ((conteudos == null) ? 0 : conteudos.hashCode());
+        result = prime * result + (conclusao ? 1231 : 1237);
         return result;
     }
     @Override
@@ -64,37 +91,23 @@ public class Bootcamp {
         if (getClass() != obj.getClass())
             return false;
         Bootcamp other = (Bootcamp) obj;
-        if (nome == null) {
-            if (other.nome != null)
-                return false;
-        } else if (!nome.equals(other.nome))
-            return false;
-        if (descricao == null) {
-            if (other.descricao != null)
-                return false;
-        } else if (!descricao.equals(other.descricao))
-            return false;
-        if (dataInicial == null) {
-            if (other.dataInicial != null)
-                return false;
-        } else if (!dataInicial.equals(other.dataInicial))
-            return false;
-        if (dataFinal == null) {
-            if (other.dataFinal != null)
-                return false;
-        } else if (!dataFinal.equals(other.dataFinal))
-            return false;
-        if (devsInscritos == null) {
-            if (other.devsInscritos != null)
-                return false;
-        } else if (!devsInscritos.equals(other.devsInscritos))
-            return false;
-        if (conteudos == null) {
-            if (other.conteudos != null)
-                return false;
-        } else if (!conteudos.equals(other.conteudos))
+        if (conclusao != other.conclusao)
             return false;
         return true;
     }
-    
+
+    public void conclusao() {
+        int totalConteudos = conteudos.size();
+        int conteudosConcluidos = 0;
+        for (Conteudo conteudo : conteudos) {
+            if (conteudo.isConcluido()) {
+                conteudosConcluidos++;
+            }
+        }
+        if (conteudosConcluidos >= (totalConteudos * 2) / 3) {
+            this.conclusao = true;
+        }else {
+            this.conclusao = false;
+    }
+}
 }

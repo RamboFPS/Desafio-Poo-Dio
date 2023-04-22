@@ -9,6 +9,8 @@ public  abstract class Conteudo {
 
       public abstract Double calcularXp();
 
+      
+
     public String getTitulo() {
         return titulo;
     }
@@ -24,5 +26,13 @@ public  abstract class Conteudo {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
+
+
+
+    public boolean isConcluido() {
+        return false;
+    }
+
+    
     
 }

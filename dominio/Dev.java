@@ -8,7 +8,9 @@ public class Dev {
 
 private String nome;
 private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>(); 
-private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>(); 
+private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
+public String getConteudosInscritos;
+public Object bootcamp; 
 
 public void inscreverBootcamp(Bootcamp bootcamp){
     this.conteudosInscritos.addAll(bootcamp.getConteudos());
@@ -89,6 +91,13 @@ public boolean equals(Object obj) {
     } else if (!conteudosConcluidos.equals(other.conteudosConcluidos))
         return false;
     return true;
+}
+
+public boolean setConclusao() {
+    return true ;
+}
+
+public void porcentagemConcluida() {
 }
 
 
